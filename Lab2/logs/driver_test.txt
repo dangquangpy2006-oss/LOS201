@@ -1,0 +1,93 @@
+echo "=== LAB-02 Driver Test ==="
+
+echo "[1] Load module"
+insmod /lib/modules/5.15.0/lab2_driver.ko
+
+echo "[2] Check module"
+lsmod | grep lab2
+
+echo "[3] Create device node"
+mknod /dev/lab2 c 240 0
+chmod 666 /dev/lab2
+
+echo "[4] Write data"
+echo "Hello from userspace, LAB-02!" > /dev/lab2
+
+echo "[5] Read data"
+cat /dev/lab2
+
+echo "[6] Multiple write/read"
+echo "Test 123" > /dev/lab2
+cat /dev/lab2
+
+echo "Test ABC" > /dev/lab2
+cat /dev/lab2
+
+echo "[7] Kernel log"
+dmesg | grep lab2
+
+echo "=== TEST DONE ==="
+=== LAB-02 Driver Test ===
+[1] Load module
+lab2: registered with major 240
+lab2: module loaded successfully
+lab2: /proc/lab2_info created
+lab2: sysfs attributes created
+[2] Check module
+lab2_driver 16384 0 - Live 0x7f000000 (O)
+[3] Create device node
+mknod: /dev/lab2: File exists
+[4] Write data
+lab2: device opened, open_count=1
+lab2: wrote 30 bytes
+lab2: device released
+[5] Read data
+lab2: device opened, open_count=2
+lab2: read 30 bytes
+Hello from userspace, LAB-02!
+lab2: device released
+[6] Multiple write/read
+lab2: device opened, open_count=3
+lab2: wrote 9 bytes
+lab2: device released
+lab2: device opened, open_count=4
+lab2: read 9 bytes
+Test 123
+lab2: device released
+lab2: device opened, open_count=5
+lab2: wrote 9 bytes
+lab2: device released
+lab2: device opened, open_count=6
+lab2: read 9 bytes
+Test ABC
+lab2: device released
+[7] Kernel log
+lab2_driver: loading out-of-tree module taints kernel.
+lab2: registered with major 240
+lab2: module loaded successfully
+lab2: /proc/lab2_info created
+lab2: sysfs attributes created
+lab2: module unloaded
+lab2: registered with major 240
+lab2: module loaded successfully
+lab2: /proc/lab2_info created
+lab2: sysfs attributes created
+lab2: device opened, open_count=1
+lab2: wrote 30 bytes
+lab2: device released
+lab2: device opened, open_count=2
+lab2: read 30 bytes
+lab2: device released
+lab2: device opened, open_count=3
+lab2: wrote 9 bytes
+lab2: device released
+lab2: device opened, open_count=4
+lab2: read 9 bytes
+lab2: device released
+lab2: device opened, open_count=5
+lab2: wrote 9 bytes
+lab2: device released
+lab2: device opened, open_count=6
+lab2: read 9 bytes
+lab2: device released
+=== TEST DONE ===

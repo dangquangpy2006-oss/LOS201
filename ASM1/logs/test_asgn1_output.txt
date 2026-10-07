@@ -1,0 +1,44 @@
+===== ASM1 TASK 1 TEST =====
+[1] Check/Load driver
+asgn1_driver 16384 0 - Live 0x7f000000 (O)
+[2] Check device
+crw-------    1 root     0         241,   0 Oct  7 20:20 [1;35m/dev/asgn1[m
+[3] Run ioctl test
+asgn1: device opened, open_count=1
+Device opened successfully
+asgn1: ioctl SET_MODE mode=1
+SET_MODE = 1
+asgn1: ioctl GET_VERSION
+driver version = [asgn1_driver v1.0]
+asgn1: wrote 10 bytes
+write returned = 10
+asgn1: read 10 bytes
+read data = [hello ASM1]
+asgn1: ioctl GET_STATS
+open_count = 1
+write_count = 1
+read_count = 1
+buffer_len = 10
+last_write_size = 10
+asgn1: ioctl RESET_BUFFER
+RESET_BUFFER done
+asgn1: ioctl SET_MODE mode=0
+SET_MODE = 0
+asgn1: wrote 12 bytes
+write mode 0 returned = 12
+asgn1: device released
+asgn1: device opened, open_count=2
+asgn1: read 20 bytes
+read mode 0 data = [[KERNEL]hello KERNEL]
+asgn1: ioctl RESET_BUFFER
+FINAL RESET_BUFFER done
+asgn1: ioctl invalid command
+INVALID_IOCTL: PASS (-ENOTTY)
+read after reset = []
+asgn1: device released
+[4] Unload driver
+asgn1: module unloaded
+[5] Check module after unload
+[6] Check device after unload
+ls: /dev/asgn1: No such file or directory
+===== TEST FINISHED =====

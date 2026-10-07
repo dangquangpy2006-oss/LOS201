@@ -1,0 +1,32 @@
+===== COUNTER DRIVER TEST =====
+[1] Load driver
+counter_driver: module loaded
+counter_driver: /proc/counter_info created
+[2] Check module
+counter_driver 16384 0 - Live 0x7f000000 (O)
+[3] Check device
+crw-------    1 root     0          10, 125 Oct  7 20:20 [1;35m/dev/counter[m
+[4] Read counter
+0
+[5] Read counter again
+1
+[6] Set counter to 10
+[7] Read counter after write
+10
+[8] Check proc info
+Counter: 11
+Total reads: 3
+Total writes/resets: 1
+[9] Reset counter to 0
+[10] Check proc after reset
+Counter: 0
+Total reads: 3
+Total writes/resets: 2
+[11] Unload driver
+counter_driver: module unloaded
+[12] Check module after unload
+[13] Check device after unload
+ls: /dev/counter: No such file or directory
+[14] Check proc after unload
+ls: /proc/counter_info: No such file or directory
+===== TEST FINISHED =====

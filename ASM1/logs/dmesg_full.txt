@@ -1,0 +1,7 @@
+asgn1_driver: loading out-of-tree module taints kernel.
+asgn1: registered with major 241
+asgn1: module loaded successfully
+asgn1: sysfs attributes created
+[ASM1] asgn1_driver loaded successfully
+counter_driver: module loaded
+counter_driver: /proc/counter_info created

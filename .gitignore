@@ -1,0 +1,22 @@
+# Generated root filesystem
+Lab2/rootfs/initramfs/bin/
+Lab2/rootfs/initramfs/sbin/
+Lab2/rootfs/initramfs/usr/bin/
+Lab2/rootfs/initramfs/usr/sbin/
+
+# Keep our custom test scripts
+!Lab2/rootfs/initramfs/usr/bin/test_driver.sh
+!Lab2/rootfs/initramfs/usr/bin/test_procfs.sh
+
+# Build/cache files
+*.o
+*.cmd
+*.mod
+*.mod.c
+Module.symvers
+modules.order
+
+# Editor/temp files
+*~
+*.save
+

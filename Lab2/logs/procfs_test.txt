@@ -1,0 +1,31 @@
+=== LAB-02: procfs & sysfs Test ===
+
+--- /proc/lab2_info BEFORE write ---
+Driver name : lab2
+Major       : 240
+Buffer size : 1024
+Data length : 9
+Open count  : 6
+Last data   : Test ABC
+
+
+--- Writing data to /dev/lab2 ---
+lab2: device opened, open_count=7
+lab2: wrote 30 bytes
+lab2: device released
+
+--- /proc/lab2_info AFTER write ---
+Driver name : lab2
+Major       : 240
+Buffer size : 1024
+Data length : 30
+Open count  : 7
+Last data   : Embedded Linux Lab2 Test Data
+
+
+--- sysfs attributes ---
+buffer_len : 30
+open_count : 7
+last_data  : Embedded Linux Lab2 Test Data
+
+=== procfs/sysfs Test PASSED ===
