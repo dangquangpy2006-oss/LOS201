@@ -1,0 +1,29 @@
+STUDENT INFORMATION
+Name: Nguyen Dang Quang
+Student ID: SE201072
+Course: Embedded Linux Systems
+Lab: LAB-03
+
+HOST INFORMATION
+Linux nguyendangquang-Bellator 7.0.0-38-generic #38~24.04.4-Ubuntu SMP PREEMPT_DYNAMIC Mon Sep 14 16:37:11 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+
+GDB
+GNU gdb (Ubuntu 15.1-1ubuntu1~24.04.1) 15.1
+
+VALGRIND
+valgrind-3.22.0
+
+PERF
+perf version 7.0.14
+
+STRACE
+strace -- version 6.8
+
+CYCLICTEST
+cyclictest V 2.50
+
+QEMU
+QEMU emulator version 8.2.2 (Debian 1:8.2.2+ds-0ubuntu1.18)
+
+REAL-TIME MEASUREMENT KERNEL
+7.0.0-34-generic (PREEMPT_DYNAMIC)

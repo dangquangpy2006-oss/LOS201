@@ -1,0 +1,44 @@
+LAB03 - ARM VmRSS Before/After Comparison
+Student: Nguyen Dang Quang
+Student ID: SE201072
+
+Environment:
+QEMU vexpress-a9
+ARMv7-A Cortex-A9
+Linux Kernel 5.15.0
+
+Application:
+/usr/bin/leaky_app_rss_arm
+
+BEFORE ALLOCATION
+VmSize: 1548 kB
+VmRSS:   156 kB
+VmData:  192 kB
+
+AFTER ALLOCATION AND PROCESSING
+VmSize: 1548 kB
+VmRSS:   156 kB
+VmData:  192 kB
+
+COMPARISON
+VmSize difference: 0 kB
+VmRSS difference:  0 kB
+VmData difference: 0 kB
+
+ANALYSIS
+The measured VmRSS remained unchanged during this test.
+
+This does not mean the application has no memory leaks.
+Valgrind previously confirmed 16900 bytes of definitely
+lost memory in 250 blocks.
+
+VmRSS measures resident physical memory pages rather
+than the number of leaked heap allocation bytes.
+
+Small allocations may reuse already resident pages.
+Therefore, a memory leak does not necessarily cause
+a measurable increase in VmRSS in a single short run.
+
+CONCLUSION
+The before/after comparison was completed successfully.
+No VmRSS increase was observed in this experiment.

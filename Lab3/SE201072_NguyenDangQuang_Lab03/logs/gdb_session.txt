@@ -1,0 +1,135 @@
+Remote debugging using localhost:1234
+Reading symbols from /home/nguyendangquang/embedded_lab3/rootfs/initramfs/lib/ld-linux-armhf.so.3...
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Debuginfod has been enabled.
+To make this setting permanent, add 'set debuginfod enabled on' to .gdbinit.
+Downloading separate debug info for system-supplied DSO at 0x76fe0000
+[###                                                                                                                    ][ ###                                                                                                                   ]                                                                                                                           0x76ff0598 in _start () from /home/nguyendangquang/embedded_lab3/rootfs/initramfs/lib/ld-linux-armhf.so.3
+Already logging to /home/nguyendangquang/embedded_lab3/logs/gdb_session.txt.
+Breakpoint 1 at 0x400732: file buggy_app.c, line 29.
+Breakpoint 2 at 0x400682: file buggy_app.c, line 7.
+Continuing.
+Downloading separate debug info for /home/nguyendangquang/embedded_lab3/rootfs/initramfs/lib/libc.so.6
+[###                                                                                                                    ][ ###                                                                                                                   ][  ###                                                                                                                  ][   ###                                                                                                                 ][    ###                                                                                                                ][     ###                                                                                                               ][      ###                                                                                                              ][       ###                                                                                                             ][        ###                                                                                                            ]                                                                                                                           
+Breakpoint 1, main (argc=1, argv=0x7efffe94) at buggy_app.c:29
+29	int main(int argc, char *argv[]) {
+24	    int result = a * b;
+25	    printf("calculate(%d, %d) = %d\n", a, b, result);
+26	    return result;
+27	}
+28	
+29	int main(int argc, char *argv[]) {
+30	    printf("=== Buggy App v1.0 - LAB-03 Debug Target ===\n");
+31	
+32	    /* Test 1 */
+33	    int arr[5] = {10, 20, 30, 40, 50};
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0x00400732 in main at buggy_app.c:29
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x00400682 in process_data at buggy_app.c:7
+Continuing.
+
+Breakpoint 2, process_data (data=0x7efffcf8, len=5) at buggy_app.c:7
+7	    int sum = 0;
+$1 = 5
+$2 = {10, 20, 30, 40, 50}
+#0  process_data (data=0x7efffcf8, len=5) at buggy_app.c:7
+#1  0x00400774 in main (argc=1, argv=0x7efffe94) at buggy_app.c:35
+5	/* Bug 1: Array out-of-bounds */
+6	void process_data(int *data, int len) {
+7	    int sum = 0;
+8	    for (int i = 0; i <= len; i++) {
+9	        sum += data[i];
+10	    }
+11	    printf("Sum = %d\n", sum);
+12	}
+Breakpoint 3 at 0x40068c: file buggy_app.c, line 9.
+Continuing.
+
+Breakpoint 3, process_data (data=0x7efffcf8, len=5) at buggy_app.c:9
+9	        sum += data[i];
+$3 = 5
+$4 = 5
+$5 = 150
+#0  process_data (data=0x7efffcf8, len=5) at buggy_app.c:9
+#1  0x00400774 in main (argc=1, argv=0x7efffe94) at buggy_app.c:35
+Breakpoint 4 at 0x4006cc: file buggy_app.c, line 16.
+Continuing.
+
+Breakpoint 4, create_message (text=0x400940 "Hello Embedded Linux") at buggy_app.c:16
+16	    char *buf = malloc(strlen(text) + 1);
+14	/* Bug 2: Use after free */
+15	char *create_message(const char *text) {
+16	    char *buf = malloc(strlen(text) + 1);
+17	    strcpy(buf, text);
+18	    free(buf);
+19	    return buf;
+20	}
+21	
+#0  create_message (text=0x400940 "Hello Embedded Linux") at buggy_app.c:16
+#1  0x00400788 in main (argc=1, argv=0x7efffe94) at buggy_app.c:39
+$6 = 0x400940 "Hello Embedded Linux"
+17	    strcpy(buf, text);
+$7 = 0x404198 ""
+18	    free(buf);
+$8 = 0x404198 "Hello Embedded Linux"
+0x404198:	"Hello Embedded Linux"
+19	    return buf;
+Undefined command: "19".  Try "help".
+$9 = 0x404198 "\004\004"
+#0  create_message (text=0x400940 "Hello Embedded Linux") at buggy_app.c:19
+#1  0x00400788 in main (argc=1, argv=0x7efffe94) at buggy_app.c:39
+Run till exit from #0  create_message (text=0x400940 "Hello Embedded Linux") at buggy_app.c:19
+0x00400788 in main (argc=1, argv=0x7efffe94) at buggy_app.c:39
+39	    char *msg = create_message("Hello Embedded Linux");
+Value returned is $10 = 0x404198 "\004\004"
+$11 = 0x64 <error: Cannot access memory at address 0x64>
+37	    /* Test 2 */
+38	    printf("[TEST2] Creating message\n");
+39	    char *msg = create_message("Hello Embedded Linux");
+40	    printf("Message: %s\n", msg);
+41	
+42	    /* Test 3 */
+43	    printf("[TEST3] Integer calculation\n");
+40	    printf("Message: %s\n", msg);
+$12 = 0x404198
+#0  main (argc=1, argv=0x7efffe94) at buggy_app.c:40
+Breakpoint 5 at 0x400702: file buggy_app.c, line 24.
+Continuing.
+
+Breakpoint 5, calculate (a=100000, b=100000) at buggy_app.c:24
+24	    int result = a * b;
+$13 = 100000
+$14 = 100000
+22	/* Bug 3: Integer overflow */
+23	int calculate(int a, int b) {
+24	    int result = a * b;
+25	    printf("calculate(%d, %d) = %d\n", a, b, result);
+26	    return result;
+27	}
+25	    printf("calculate(%d, %d) = %d\n", a, b, result);
+$15 = 1410065408
+$16 = 10000000000
+$17 = 4
+#0  calculate (a=100000, b=100000) at buggy_app.c:25
+#1  0x004007b4 in main (argc=1, argv=0x7efffe94) at buggy_app.c:44
+r0             0x186a0             100000
+r1             0x186a0             100000
+r2             0x186a0             100000
+r3             0x540be400          1410065408
+r4             0x7efffd08          2130705672
+r5             0x40099c            4196764
+r6             0x401eac            4202156
+r7             0x7efffcd0          2130705616
+r8             0x400729            4196137
+r9             0x76ffecd8          1996483800
+r10            0x0                 0
+r11            0x401eac            4202156
+r12            0x4                 4
+sp             0x7efffcd0          0x7efffcd0
+lr             0x4007b5            4196277
+pc             0x40070c            0x40070c <calculate+20>
+cpsr           0x200f0030          537854000
+fpscr          0x0                 0

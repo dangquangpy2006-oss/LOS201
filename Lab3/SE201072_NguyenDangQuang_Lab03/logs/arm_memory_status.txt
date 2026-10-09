@@ -1,0 +1,21 @@
+LAB03 - ARM Memory Analysis
+Student ID: SE201072
+Environment: QEMU ARM vexpress-a9
+Application: leaky_app_monitor_arm
+Measurement source: /proc/65/status
+
+Name:    leaky_app_monit
+State:   S (sleeping)
+Pid:     65
+PPid:    63
+VmSize:  1548 kB
+VmRSS:    156 kB
+VmData:   192 kB
+
+Notes:
+- Application was cross-compiled for ARMv7-A.
+- Application ran successfully in QEMU.
+- sleep(30) was added to allow memory measurement.
+- VmRSS is a snapshot of resident memory usage.
+- Host Valgrind detected 16,900 bytes leaked in the original program.
+- Host Valgrind detected 0 bytes leaked after fixing the program.

@@ -1,0 +1,83 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 154  of event 'cpu_atom/cycles/P'
+# Event count (approx.): 113200815
+#
+# Overhead  Command      Shared Object          Symbol                            IPC   [IPC Coverage]
+# ........  ...........  .....................  ................................  ....................
+#
+    33.12%  perf_target  libm.so.6              [.] __ieee754_log_fma             -      -            
+    29.93%  perf_target  perf_target            [.] heavy_compute                 -      -            
+     4.52%  perf_target  libm.so.6              [.] log@@GLIBC_2.29               -      -            
+     2.14%  sudo         ld-linux-x86-64.so.2   [.] check_match                   -      -            
+     1.88%  sudo         ld-linux-x86-64.so.2   [.] do_lookup_x                   -      -            
+     0.99%  perf_target  [kernel.kallsyms]      [k] select_task_rq_fair           -      -            
+     0.99%  perf_target  [kernel.kallsyms]      [k] try_charge_memcg              -      -            
+     0.99%  perf_target  [kernel.kallsyms]      [k] mpage_map_and_submit_buffers  -      -            
+     0.98%  perf_target  [kernel.kallsyms]      [k] free_unref_folios             -      -            
+     0.95%  sudo         [kernel.kallsyms]      [k] perf_event_alloc              -      -            
+     0.84%  sudo         [kernel.kallsyms]      [k] filename_lookup               -      -            
+     0.84%  sudo         [kernel.kallsyms]      [k] pick_next_task                -      -            
+     0.82%  sudo         [kernel.kallsyms]      [k] __rb_insert_augmented         -      -            
+     0.82%  sudo         libnss_systemd.so.2    [.] 0x0000000000013fff            -      -            
+     0.81%  sudo         libc.so.6              [.] _nss_files_parse_grent        -      -            
+     0.80%  sudo         [kernel.kallsyms]      [k] __x64_sys_rt_sigprocmask      -      -            
+     0.80%  sudo         ld-linux-x86-64.so.2   [.] _dl_cache_libcmp              -      -            
+     0.79%  sudo         pam_cap.so             [.] 0x0000000000001558            -      -            
+     0.79%  sudo         libc.so.6              [.] __GI___libc_open              -      -            
+     0.77%  sudo         libpwquality.so.1.0.2  [.] 0x0000000000002000            -      -            
+     0.77%  sudo         [kernel.kallsyms]      [k] entry_SYSCALL_64              -      -            
+     0.75%  sudo         ld-linux-x86-64.so.2   [.] strcmp                        -      -            
+     0.75%  sudo         [kernel.kallsyms]      [k] vma_interval_tree_insert      -      -            
+     0.71%  sudo         libc.so.6              [.] __strlen_avx2                 -      -            
+     0.68%  sudo         [kernel.kallsyms]      [k] __x64_sys_fcntl               -      -            
+     0.63%  sudo         libc.so.6              [.] set_binding_values.part.0     -      -            
+     0.58%  sudo         [kernel.kallsyms]      [k] __raw_read_lock_irqsave       -      -            
+     0.57%  sudo         ld-linux-x86-64.so.2   [.] call_init.part.0              -      -            
+     0.55%  sudo         [kernel.kallsyms]      [k] handle_pte_fault              -      -            
+     0.55%  sudo         [kernel.kallsyms]      [k] fput                          -      -            
+     0.53%  perf_target  [kernel.kallsyms]      [k] kernel_init_pages             -      -            
+     0.51%  sudo         [kernel.kallsyms]      [k] count_memcg_events            -      -            
+     0.50%  sudo         pam_sss.so             [.] 0x00000000000039ac            -      -            
+     0.44%  sudo         [kernel.kallsyms]      [k] vma_interval_tree_remove      -      -            
+     0.43%  sudo         ld-linux-x86-64.so.2   [.] _dl_close_worker.part.0       -      -            
+     0.38%  sudo         [kernel.kallsyms]      [k] perf_iterate_ctx              -      -            
+     0.38%  sudo         [kernel.kallsyms]      [k] copy_mc_enhanced_fast_string  -      -            
+     0.35%  perf_target  perf_target            [.] main                          -      -            
+     0.33%  sudo         [kernel.kallsyms]      [k] set_task_cpu                  -      -            
+     0.33%  perf_target  [kernel.kallsyms]      [k] native_irq_return_iret        -      -            
+     0.32%  sudo         [kernel.kallsyms]      [k] kernel_init_pages             -      -            
+     0.31%  sudo         [kernel.kallsyms]      [k] __refill_objects_node         -      -            
+     0.30%  sudo         [kernel.kallsyms]      [k] errseq_sample                 -      -            
+     0.28%  sudo         pam_limits.so          [.] pam_sm_close_session          -      -            
+     0.25%  sudo         [kernel.kallsyms]      [k] next_uptodate_folio           -      -            
+     0.25%  perf_target  ld-linux-x86-64.so.2   [.] strcmp                        -      -            
+     0.23%  perf_target  [kernel.kallsyms]      [k] __mmap_region                 -      -            
+     0.22%  perf_target  ld-linux-x86-64.so.2   [.] _dl_lookup_symbol_x           -      -            
+     0.22%  sudo         libc.so.6              [.] __open64_nocancel             -      -            
+     0.20%  perf_target  [kernel.kallsyms]      [k] __perf_addr_filters_adjust    -      -            
+     0.18%  sudo         [kernel.kallsyms]      [k] free_pages_and_swap_cache     -      -            
+     0.18%  sudo         [kernel.kallsyms]      [k] __memcg_slab_post_alloc_hook  -      -            
+     0.16%  sudo         [kernel.kallsyms]      [k] update_dl_rq_load_avg         -      -            
+     0.16%  sudo         [kernel.kallsyms]      [k] rmqueue_bulk                  -      -            
+     0.15%  sudo         [kernel.kallsyms]      [k] locks_release_private         -      -            
+     0.14%  sudo         [kernel.kallsyms]      [k] unmap_vmas                    -      -            
+     0.11%  sudo         [kernel.kallsyms]      [k] __pi_memset                   -      -            
+     0.11%  sudo         [kernel.kallsyms]      [k] _raw_spin_lock_irq            -      -            
+     0.11%  sudo         [kernel.kallsyms]      [k] dequeue_entity                -      -            
+     0.11%  sudo         [kernel.kallsyms]      [k] do_exit                       -      -            
+     0.11%  sudo         [kernel.kallsyms]      [k] leftmatch_fb                  -      -            
+     0.11%  sudo         [kernel.kallsyms]      [k] vm_get_page_prot              -      -            
+     0.11%  sudo         libsudo_util.so.0.0.0  [.] getpid@plt                    -      -            
+     0.11%  sudo         libsudo_util.so.0.0.0  [.] 0x00000000000071dc            -      -            
+     0.11%  sudo         sudo                   [.] 0x000000000000c5e0            -      -            
+     0.10%  sudo         [kernel.kallsyms]      [k] __handle_mm_fault             -      -            
+     0.09%  sudo         libsudo_util.so.0.0.0  [.] 0x000000000000a74b            -      -            
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

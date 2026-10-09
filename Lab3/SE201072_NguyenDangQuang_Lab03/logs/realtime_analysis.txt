@@ -1,0 +1,63 @@
+LAB03 - Real-Time Latency Analysis
+Student ID: SE201072
+
+HOST ENVIRONMENT
+Kernel: 7.0.0-34-generic
+Architecture: x86_64
+Preemption: PREEMPT_DYNAMIC
+PREEMPT_RT: Disabled
+
+TEST CONFIGURATION
+Tool: cyclictest
+Threads: 4
+Priority: 80
+Interval: 1000 us
+Loops: 10000 per thread
+
+STANDARD KERNEL - WITHOUT ACTIVE STRESS
+Thread 0: Min=0 Avg=0 Max=139 us
+Thread 1: Min=0 Avg=1 Max=240 us
+Thread 2: Min=0 Avg=1 Max=244 us
+Thread 3: Min=0 Avg=1 Max=554 us
+
+Overall maximum observed latency: 554 us
+
+STANDARD KERNEL - WITH STRESS-NG
+Stress workload:
+4 CPU workers
+2 IO workers
+2 VM workers
+128 MB per VM worker
+Duration: 60 seconds
+
+Thread 0: Min=1 Avg=1 Max=592 us
+Thread 1: Min=1 Avg=1 Max=189 us
+Thread 2: Min=1 Avg=1 Max=926 us
+Thread 3: Min=1 Avg=1 Max=511 us
+
+Overall maximum observed latency: 926 us
+
+COMPARISON
+Without stress: 554 us
+With stress: 926 us
+Difference: 372 us
+Increase: approximately 67.1 percent
+
+ANALYSIS
+The measured maximum latency increased under system stress.
+Maximum latency is important because a large delay may cause
+a real-time task to miss its deadline.
+
+PREEMPT_RT COMPARISON
+PREEMPT_RT is designed to improve scheduling predictability
+and reduce worst-case latency.
+
+The current Ubuntu kernel does not enable PREEMPT_RT.
+Therefore, no experimental PREEMPT_RT measurements
+were performed in this lab.
+
+CONCLUSION
+PREEMPT_RT is generally more suitable for applications
+requiring strict timing constraints, such as robot control.
+However, meeting a specific deadline must be verified
+through testing under realistic worst-case conditions.

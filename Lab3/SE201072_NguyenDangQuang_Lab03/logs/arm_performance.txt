@@ -1,0 +1,36 @@
+LAB03 - ARM Performance Analysis
+Student ID: SE201072
+
+Application: perf_target_arm
+Architecture: ARMv7-A
+Environment: QEMU vexpress-a9
+Kernel: Linux 5.15.0
+
+ARM Execution Result:
+- Program executed successfully.
+- CPU-intensive computation completed.
+- Linear search completed.
+- I/O intensive operation completed.
+- Program exited normally.
+
+ARM Timing:
+real: 0.44 seconds
+user: 0.44 seconds
+sys:  0.00 seconds
+
+Host Timing:
+real: 0.030324420 seconds
+
+Comparison:
+QEMU ARM / Ubuntu Host = approximately 14.51 times
+
+Analysis:
+The ARM program executed successfully under QEMU.
+The observed QEMU ARM execution time was approximately
+14.51 times the measured Ubuntu Host execution time.
+
+The difference may be caused by software emulation overhead,
+CPU architecture differences, and runtime environment differences.
+
+These results are from individual measurements and do not
+represent the performance of physical ARM hardware.

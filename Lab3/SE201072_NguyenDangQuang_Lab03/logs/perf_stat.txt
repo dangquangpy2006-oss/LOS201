@@ -1,0 +1,23 @@
+# started on Fri Oct  9 22:11:14 2026
+
+
+ Performance counter stats for 'sudo -u nguyendangquang ./perf_target':
+
+             28.42 msec task-clock                                                            
+       103,603,833      cpu_atom/cycles/                                                        (94.10%)
+        17,535,583      cpu_core/cycles/                                                        (20.31%)
+       419,398,839      cpu_atom/instructions/                                                  (94.10%)
+        23,888,962      cpu_core/instructions/                                                  (20.31%)
+           235,774      cpu_atom/cache-misses/                                                  (94.10%)
+           144,595      cpu_core/cache-misses/                                                  (20.31%)
+        58,888,531      cpu_atom/branches/                                                      (94.10%)
+         4,754,915      cpu_core/branches/                                                      (20.31%)
+           111,754      cpu_atom/branch-misses/                                                 (94.10%)
+           122,461      cpu_core/branch-misses/                                                 (20.31%)
+
+       0.030324420 seconds time elapsed
+
+       0.004351000 seconds user
+       0.005439000 seconds sys
+
+

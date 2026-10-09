@@ -1,0 +1,62 @@
+LAB03 - ARM System Call Analysis
+Student ID: SE201072
+
+Environment: QEMU ARM vexpress-a9
+Architecture: ARMv7
+Tool: strace 6.8
+Application: /usr/bin/perf_target_arm
+
+Command:
+/usr/bin/strace -c /usr/bin/perf_target_arm
+
+Application Output:
+=== Perf Target App - LAB-03 ===
+[1] CPU-intensive computation...
+    Result: 11433083166.074631
+[2] Linear search (1000 times)...
+[3] I/O intensive (write 10000 lines)...
+Done.
+
+System Call Summary:
+
+% time     seconds  usecs/call     calls    errors syscall
+------ ----------- ----------- --------- --------- ----------------
+ 54.95    0.002524          33        75           write
+ 13.59    0.000624         156         4           mprotect
+ 12.15    0.000558         279         2           munmap
+  8.62    0.000396          49         8           mmap2
+  1.59    0.000073          73         1           rseq
+  1.39    0.000064          64         1           set_tls
+  1.31    0.000060          20         3           brk
+  1.24    0.000057          19         3           close
+  1.20    0.000055           9         6         1 statx
+  1.07    0.000049          49         1           ioctl
+  0.67    0.000031          31         1           set_tid_address
+  0.65    0.000030          30         1           ugetrlimit
+  0.63    0.000029          29         1           clock_gettime64
+  0.50    0.000023          23         1         1 getrandom
+  0.44    0.000020          20         1           set_robust_list
+  0.00    0.000000           0         2           read
+  0.00    0.000000           0         1           execve
+  0.00    0.000000           0         1         1 access
+  0.00    0.000000           0         7         4 openat
+------ ----------- ----------- --------- --------- ----------------
+100.00    0.004593          38       120         7 total
+
+Analysis:
+The ARM application executed successfully.
+
+Total system calls: 120
+System calls returning errors: 7
+
+The write system call occurred 75 times,
+accounting for 54.95 percent of measured syscall time.
+
+Buffered I/O reduced the number of write calls
+despite the application writing 10000 lines.
+
+The Ubuntu x86-64 host recorded 124 system calls,
+while the QEMU ARM environment recorded 120.
+
+Differences may result from architecture,
+system libraries, and runtime environment.
