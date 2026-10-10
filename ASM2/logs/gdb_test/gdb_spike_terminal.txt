@@ -1,0 +1,177 @@
+Breakpoint 1 at 0x3ca1: file processor_thread.c, line 115.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[New Thread 0x7ffff7bff6c0 (LWP 10853)]
+[New Thread 0x7ffff73fe6c0 (LWP 10854)]
+[New Thread 0x7ffff6bfd6c0 (LWP 10855)]
+[New Thread 0x7ffff63fc6c0 (LWP 10856)]
+[Switching to Thread 0x7ffff6bfd6c0 (LWP 10855)]
+
+========== BEFORE GDB INJECTION ==========
+$1 = 42.5
+$2 = 42.5
+$3 = true
+$4 = 0
+
+========== INJECT PREVIOUS TEMPERATURE ==========
+
+========== AFTER GDB INJECTION ==========
+$5 = 42.5
+$6 = 25
+$7 = 17.5
+
+========== THREADS ==========
+  Id   Target Id                                        Frame 
+  1    Thread 0x7ffff7fa7740 (LWP 10850) "sms_app_host" 0x00007ffff7cecbdf in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=0x7fffffff5a40, rem=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:78
+  2    Thread 0x7ffff7bff6c0 (LWP 10853) "sms_app_host" 0x00007ffff7c98e51 in __futex_abstimed_wait_common64 (private=32767, cancel=true, abstime=0x7ffff7bfed00, op=393, expected=0, futex_word=0x7fffffffdcd0) at ./nptl/futex-internal.c:57
+  3    Thread 0x7ffff73fe6c0 (LWP 10854) "sms_app_host" 0x00007ffff7ca87ed in ___mq_timedreceive_time64 (abs_timeout=0x7ffff73fdd70, msg_prio=0x0, msg_len=24, msg_ptr=0x7ffff73fdd80 "\350\003", mqdes=3) at ../sysdeps/unix/sysv/linux/mq_timedreceive.c:35
+* 4    Thread 0x7ffff6bfd6c0 (LWP 10855) "sms_app_host" check_sensor_alerts (sample=0x7ffff6bfcd60, previous_temp=25, has_previous=true, alert_queue=3) at processor_thread.c:115
+  5    Thread 0x7ffff63fc6c0 (LWP 10856) "sms_app_host" 0x00007ffff7cecbdf in __GI___clock_nanosleep (clock_id=1, flags=1, req=0x7ffff63fbd10, rem=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:78
+
+========== BACKTRACE ==========
+#0  check_sensor_alerts (sample=0x7ffff6bfcd60, previous_temp=25, has_previous=true, alert_queue=3) at processor_thread.c:115
+#1  0x0000555555557f81 in processor_thread_main (arg=0x7fffffff5a90) at processor_thread.c:208
+#2  0x00007ffff7c9cb84 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:447
+#3  0x00007ffff7d29ecc in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+====================================
+      SENSOR MONITORING SYSTEM
+====================================
+[MAIN] Student ID: SE201072
+[MAIN] Circular Buffer initialized (64)
+[MAIN] POSIX Message Queue initialized
+[MAIN] Log Queue initialized (128)
+[LOGGER] Thread started
+[LOGGER] Log file: /tmp/sensor.log
+[PROCESSOR] Thread started
+[MAIN] All 4 POSIX Threads started
+[MAIN] Press Ctrl+C to stop
+[SENSOR] Host mock mode: skipping driver ioctl\n[SENSOR] Device opened: /tmp/sms_sensor_mock.csv
+[SENSOR] Sampling interval: 500 ms
+[ALERT] Thread started
+[SENSOR] Time=1000 ms | Temp=42.5 C | Hum=85.0%
+[PROCESSOR] Sample=1 | Temp=42.5 C | Hum=85.0% | Avg(10)=42.50 C
+
+[ALERT] HIGH TEMPERATURE
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 42.5 | Threshold: 40.0
+
+[ALERT] HIGH HUMIDITY
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 85.0 | Threshold: 80.0
+[SENSOR] Time=1000 ms | Temp=42.5 C | Hum=85.0%
+[PROCESSOR] Sample=2 | Temp=42.5 C | Hum=85.0% | Avg(10)=42.50 C
+
+[ALERT] HIGH TEMPERATURE
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 42.5 | Threshold: 40.0
+
+[ALERT] HIGH HUMIDITY
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 85.0 | Threshold: 80.0
+
+[ALERT] TEMPERATURE SPIKE
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 17.5 | Threshold: 5.0
+[SENSOR] Time=1000 ms | Temp=42.5 C | Hum=85.0%
+[PROCESSOR] Sample=3 | Temp=42.5 C | Hum=85.0% | Avg(10)=42.50 C
+
+[ALERT] HIGH TEMPERATURE
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 42.5 | Threshold: 40.0
+
+[ALERT] HIGH HUMIDITY
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 85.0 | Threshold: 80.0
+[SENSOR] Time=1000 ms | Temp=42.5 C | Hum=85.0%
+[PROCESSOR] Sample=4 | Temp=42.5 C | Hum=85.0% | Avg(10)=42.50 C
+
+[ALERT] HIGH TEMPERATURE
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 42.5 | Threshold: 40.0
+
+[ALERT] HIGH HUMIDITY
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 85.0 | Threshold: 80.0
+[SENSOR] Time=1000 ms | Temp=42.5 C | Hum=85.0%
+[PROCESSOR] Sample=5 | Temp=42.5 C | Hum=85.0% | Avg(10)=42.50 C
+
+[ALERT] HIGH TEMPERATURE
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 42.5 | Threshold: 40.0
+
+[ALERT] HIGH HUMIDITY
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 85.0 | Threshold: 80.0
+[SENSOR] Time=1000 ms | Temp=42.5 C | Hum=85.0%
+[PROCESSOR] Sample=6 | Temp=42.5 C | Hum=85.0% | Avg(10)=42.50 C
+
+[ALERT] HIGH TEMPERATURE
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 42.5 | Threshold: 40.0
+
+[ALERT] HIGH HUMIDITY
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 85.0 | Threshold: 80.0
+[SENSOR] Time=1000 ms | Temp=42.5 C | Hum=85.0%
+[PROCESSOR] Sample=7 | Temp=42.5 C | Hum=85.0% | Avg(10)=42.50 C
+
+[ALERT] HIGH TEMPERATURE
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 42.5 | Threshold: 40.0
+
+[ALERT] HIGH HUMIDITY
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 85.0 | Threshold: 80.0
+[SENSOR] Time=1000 ms | Temp=42.5 C | Hum=85.0%
+[PROCESSOR] Sample=8 | Temp=42.5 C | Hum=85.0% | Avg(10)=42.50 C
+
+[ALERT] HIGH TEMPERATURE
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 42.5 | Threshold: 40.0
+
+[ALERT] HIGH HUMIDITY
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 85.0 | Threshold: 80.0
+[SENSOR] Time=1000 ms | Temp=42.5 C | Hum=85.0%
+[PROCESSOR] Sample=9 | Temp=42.5 C | Hum=85.0% | Avg(10)=42.50 C
+
+[ALERT] HIGH TEMPERATURE
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 42.5 | Threshold: 40.0
+
+[ALERT] HIGH HUMIDITY
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 85.0 | Threshold: 80.0
+[SENSOR] Time=1000 ms | Temp=42.5 C | Hum=85.0%
+[PROCESSOR] Sample=10 | Temp=42.5 C | Hum=85.0% | Avg(10)=42.50 C
+
+[ALERT] HIGH TEMPERATURE
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 42.5 | Threshold: 40.0
+
+[ALERT] HIGH HUMIDITY
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 85.0 | Threshold: 80.0
+[SENSOR] Time=1000 ms | Temp=42.5 C | Hum=85.0%
+[PROCESSOR] Sample=11 | Temp=42.5 C | Hum=85.0% | Avg(10)=42.50 C
+
+[ALERT] HIGH TEMPERATURE
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 42.5 | Threshold: 40.0
+
+[ALERT] HIGH HUMIDITY
+[LOGGER] Periodic flush completed
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 85.0 | Threshold: 80.0
+[SENSOR] Time=1000 ms | Temp=42.5 C | Hum=85.0%
+[PROCESSOR] Sample=12 | Temp=42.5 C | Hum=85.0% | Avg(10)=42.50 C
+
+[ALERT] HIGH TEMPERATURE
+[ALERT] Timestamp: 1000 ms
+[ALERT] Value: 42.5 | Threshold: 40.0
+
+
+Thread 1 "sms_app_host" received signal SIGINT, Interrupt.
+[Switching to Thread 0x7ffff7fa7740 (LWP 10850)]
+0x00007ffff7cecbdf in __GI___clock_nanosleep (clock_id=clock_id@entry=0, flags=flags@entry=0, req=0x7fffffff5a40, rem=0x0) at ../sysdeps/unix/sysv/linux/clock_nanosleep.c:78
+warning: 78	../sysdeps/unix/sysv/linux/clock_nanosleep.c: No such file or directory

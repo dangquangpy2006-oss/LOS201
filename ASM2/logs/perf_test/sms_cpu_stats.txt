@@ -1,0 +1,16 @@
+# started on Sat Oct 10 14:38:30 2026
+
+
+ Performance counter stats for 'timeout -s INT 30s ./valgrind_test/sms_app_host':
+
+             14.95 msec task-clock                                                            
+               476      context-switches                                                      
+                36      cpu-migrations                                                        
+               178      page-faults                                                           
+
+      30.103503294 seconds time elapsed
+
+       0.008607000 seconds user
+       0.010621000 seconds sys
+
+

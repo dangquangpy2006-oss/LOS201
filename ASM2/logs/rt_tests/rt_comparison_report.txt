@@ -1,0 +1,33 @@
+SENSOR MONITORING SYSTEM - RT JITTER COMPARISON
+Environment: Ubuntu Host x86_64
+Sampling interval: 500 ms
+SCHED_OTHER priority: 0
+SCHED_FIFO priority: 50
+
+===== OTHER =====
+Samples: 1000
+Min: 55 us
+Avg: 80.02 us
+Max: 278 us
+P99: 176 us
+Exit code: 1
+Histogram:
+  0-100 us: 826
+  100-500 us: 174
+  500-1000 us: 0
+  >1000 us: 0
+
+===== FIFO =====
+Samples: 1000
+Min: 6 us
+Avg: 17.52 us
+Max: 187 us
+P99: 105 us
+Exit code: 0
+Histogram:
+  0-100 us: 985
+  100-500 us: 15
+  500-1000 us: 0
+  >1000 us: 0
+
+P99 improvement with SCHED_FIFO: 40.34%

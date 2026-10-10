@@ -1,0 +1,144 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 8  of event 'cpu-clock'
+# Event count (approx.): 8008008
+#
+# Overhead  Command       Shared Object      Symbol                         
+# ........  ............  .................  ...............................
+#
+    12.50%  sms_app_host  [kernel.kallsyms]  [k] __kmalloc_node_noprof
+            |
+            ---__kmalloc_node_noprof
+               load_msg
+               do_mq_timedsend
+               __x64_sys_mq_timedsend
+               x64_sys_call
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+               ___mq_timedsend_time64 (inlined)
+               send_alert
+               check_sensor_alerts
+               processor_thread_main
+               start_thread
+               __clone3 (inlined)
+
+    12.50%  sms_app_host  [kernel.kallsyms]  [k] __schedule
+            |
+            ---__schedule
+               schedule
+               do_nanosleep
+               hrtimer_nanosleep
+               common_nsleep
+               __x64_sys_clock_nanosleep
+               x64_sys_call
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+               __clock_nanosleep (inlined)
+               __nanosleep
+               main
+               __libc_start_call_main
+               call_init (inlined)
+               __libc_start_main_impl (inlined)
+               _start
+
+    12.50%  sms_app_host  [kernel.kallsyms]  [k] fdget_pos
+            |
+            ---fdget_pos
+               ksys_write
+               __x64_sys_write
+               x64_sys_call
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+               __libc_write (inlined)
+               __libc_write (inlined)
+               _IO_new_file_write (inlined)
+               new_do_write (inlined)
+               _IO_new_do_write (inlined)
+               _IO_new_file_sync (inlined)
+               _IO_fflush
+               get_log_file_size
+               logger_thread_main
+               start_thread
+               __clone3 (inlined)
+
+    12.50%  sms_app_host  [kernel.kallsyms]  [k] finish_task_switch.isra.0
+            |
+            ---finish_task_switch.isra.0
+               __schedule
+               schedule
+               futex_do_wait
+               __futex_wait
+               futex_wait
+               do_futex
+               __x64_sys_futex
+               x64_sys_call
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+               __futex_abstimed_wait_common64 (inlined)
+               __futex_abstimed_wait_common (inlined)
+               __futex_abstimed_wait_cancelable64 (inlined)
+               __pthread_cond_wait_common (inlined)
+               ___pthread_cond_timedwait64 (inlined)
+               log_queue_timedpop
+               logger_thread_main
+               start_thread
+               __clone3 (inlined)
+
+    12.50%  sms_app_host  [kernel.kallsyms]  [k] plist_add
+            |
+            ---plist_add
+               futex_wait_setup
+               __futex_wait
+               futex_wait
+               do_futex
+               __x64_sys_futex
+               x64_sys_call
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+               __futex_abstimed_wait_common64 (inlined)
+               __futex_abstimed_wait_common (inlined)
+               __futex_abstimed_wait_cancelable64 (inlined)
+               __pthread_cond_wait_common (inlined)
+               ___pthread_cond_timedwait64 (inlined)
+               log_queue_timedpop
+               logger_thread_main
+               start_thread
+               __clone3 (inlined)
+
+    12.50%  sms_app_host  [kernel.kallsyms]  [k] schedule
+            |
+            ---schedule
+               wq_sleep
+               do_mq_timedreceive
+               __x64_sys_mq_timedreceive
+               x64_sys_call
+               do_syscall_64
+               entry_SYSCALL_64_after_hwframe
+               ___mq_timedreceive_time64 (inlined)
+               ___mq_timedreceive_time64 (inlined)
+               alert_thread_main
+               start_thread
+               __clone3 (inlined)
+
+    12.50%  sms_app_host  libc.so.6          [.] clock_nanosleep@GLIBC_2.2.5
+            |
+            ---__clock_nanosleep (inlined)
+               sensor_thread_main
+               start_thread
+               __clone3 (inlined)
+
+    12.50%  sms_app_host  sms_app_host       [.] circular_buffer_push
+            |
+            ---circular_buffer_push
+               sensor_thread_main
+               start_thread
+               __clone3 (inlined)
+
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#
